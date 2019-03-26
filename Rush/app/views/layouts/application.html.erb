@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rush</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div id="wraper">
+    <div id="screen">
+      <%= yield %>
+    </div>
+    <%= image_tag("gameboy.png", class: "gameboy", usemap: "#control-map") %>
+    <map name="control-map">
+      <area shape="rect" coords="142,94,212,120" href="/power">
+      <area shape="rect" coords="267,563,315,603" href="/start">
+      <area shape="rect" coords="204,563,256,603" href="/select">
+      <area shape="rect" coords="159,453,190,480" href="/up">
+      <area shape="rect" coords="191,480,220,512" href="/right">
+      <area shape="rect" coords="157,513,190,541" href="/bottom">
+      <area shape="rect" coords="129,480,157,513" href="/left">
+      <area shape="rect" coords="328,479,378,528" href="/buttonB">
+      <area shape="rect" coords="387,453,437,501" href="/buttonA">
+    </map>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+// Place all the styles related to the game_controller controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+#wraper{
+  position: relative;
+}
+
+.gameboy{
+  width: 550px;
+}
+
+#screen{
+  position: absolute;
+  width: 198px;
+  height: 182px;
+  top: 166px;
+  left: 182px;
+}
+
+#title-screen{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #b8cda3;
+}
+
+.title{
+  position: relative;
+  width: 450px;
+  left: -131px;
+}
+
+.screen-text{
+  margin-left: 10px;
+}
+
+.player{
+  position: absolute;
+  width: 10%;
+  height: 10%;
+  left: 0%;
+  top: 0%;
+}
+
+.worldmap{
+  width: 100%;
+}
