@@ -1,7 +1,15 @@
 class GameControllerController < ApplicationController
-  $view = '/'
+  # global var
+  $view = '/' # Current view
+  $game = {
+    game_manager: GameManager.new,
+    movie_battle: nil
+  }
+  $selected = 0 # Selected movie in moviedex
   $player = {
-    position: [0, 0]
+    position: [0, 0], # Player position
+    strength: 3, # Player strength, start at 3, inscrease by one for each captured moviemon
+    moviedex: [] # Moviemons player has captured
   }
   # pages
   def title_screen
@@ -19,12 +27,21 @@ class GameControllerController < ApplicationController
   def load_game
   end
 
+  def battle
+  end
+
+  def win_battle
+  end
+
+  def lose_battle
+  end
   # inputs
   def power
   end
 
   def start
     if $view == '/'
+      $game[:game_manager].get_movies
       $view = 'worldmap'
       redirect_to "/#{$view}"
     elsif $view == 'worldmap'
@@ -69,6 +86,10 @@ class GameControllerController < ApplicationController
   def right
     if $view == 'worldmap'
       $player[:position][0] = $player[:position][0] < 9 ? $player[:position][0] + 1 : 0
+      $game[:movie_battle] = $game[:game_manager].check_battle
+      if ($game[:movie_battle] != nil)
+        puts $game[:movie_battle][:title] # redirect to fight screen
+      end
     end
     redirect_to "/#{$view}"
   end

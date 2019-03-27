@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get '/moviedex' => 'game_controller#moviedex'
   get '/save' => 'game_controller#save_game'
   get '/load' => 'game_controller#load_game'
+  get '/battle' => 'game_controller#battle'
+  get '/win' => 'game_controller#win_battle'
+  get '/lose' => 'game_controller#lose_battle'
 
   # inputs
   get '/power' => 'game_controller#power'
