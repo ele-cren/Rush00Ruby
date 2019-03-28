@@ -3,13 +3,15 @@ class GameControllerController < ApplicationController
   $view = '/' # Current view
   $game = {
     game_manager: GameManager.new,
-    movie_battle: nil
+    movie_battle: nil,
+    message_battle: ''
   }
   $selected = 0 # Selected movie in moviedex
   $player = {
     position: [0, 0], # Player position
     strength: 3, # Player strength, start at 3, inscrease by one for each captured moviemon
-    moviedex: [] # Moviemons player has captured
+    moviedex: [], # Moviemons player has captured
+    selected_movie: 0
   }
   # pages
   def title_screen
@@ -19,6 +21,7 @@ class GameControllerController < ApplicationController
   end
 
   def moviedex
+    @movie = $player[:moviedex][$player[:selected_movie]]
   end
 
   def save_game
@@ -28,12 +31,16 @@ class GameControllerController < ApplicationController
   end
 
   def battle
+    @current_movie = $game[:movie_battle]
+    @player_strength = $player[:strength]
   end
 
   def win_battle
+    @movie_title = $game[:movie_battle][:title]
   end
 
   def lose_battle
+    @message = $game[:message_battle]
   end
   # inputs
   def power
@@ -43,42 +50,56 @@ class GameControllerController < ApplicationController
     if $view == '/'
       $game[:game_manager].get_movies
       $view = 'worldmap'
-      redirect_to "/#{$view}"
     elsif $view == 'worldmap'
       $view = 'moviedex'
-      redirect_to "/#{$view}"
-    else
-      redirect_to "/#{$view}"
     end
+    redirect_to "/#{$view}"
   end
 
   def select
     if $view == '/'
       $view = 'load'
-      redirect_to "/#{$view}"
     elsif $view == 'worldmap'
       $view = 'save'
-      redirect_to "/#{$view}"
     elsif $view == 'moviedex' || $view == 'save'
       $view = 'worldmap'
-      redirect_to "/#{$view}"
     elsif $view == 'load'
       $view = '/'
-      redirect_to "#{$view}"
-    else
-      redirect_to "#{$view}"
     end
+    redirect_to "/#{$view}"
   end
 
   def button_b
+    if $view == 'battle'
+      $view = 'lose'
+      $game[:message_battle] = "You are a coward ! #{$game[:movie_battle][:title]} escaped.."
+    end
+    redirect_to "/#{$view}"
   end
 
   def button_a
+    if $view == 'battle'
+      if $player[:strength].to_f < $game[:movie_battle][:imdbRating].to_f
+        $view = 'lose'
+        $game[:message_battle] = "You were not strong enough ! #{$game[:movie_battle][:title]} escaped.."
+      else
+        $view = 'win'
+        $player[:strength] += 1
+        $player[:moviedex] << $game[:movie_battle]
+      end
+    elsif $view == 'win' || $view == 'lose'
+      $view = 'worldmap'
+    end
+    redirect_to "/#{$view}"
   end
 
   def up
     if $view == 'worldmap'
       $player[:position][1] = $player[:position][1] > 0 ? $player[:position][1] - 1 : 9
+      $game[:movie_battle] = $game[:game_manager].check_battle
+      if ($game[:movie_battle] != nil)
+        $view = 'battle'
+      end
     end
     redirect_to "/#{$view}"
   end
@@ -88,7 +109,11 @@ class GameControllerController < ApplicationController
       $player[:position][0] = $player[:position][0] < 9 ? $player[:position][0] + 1 : 0
       $game[:movie_battle] = $game[:game_manager].check_battle
       if ($game[:movie_battle] != nil)
-        puts $game[:movie_battle][:title] # redirect to fight screen
+        $view = 'battle'
+      end
+    elsif $view == 'moviedex'
+      if $player[:selected_movie] < $player[:moviedex].length - 1
+        $player[:selected_movie] += 1
       end
     end
     redirect_to "/#{$view}"
@@ -97,6 +122,10 @@ class GameControllerController < ApplicationController
   def bottom
     if $view == 'worldmap'
       $player[:position][1] = $player[:position][1] < 9 ? $player[:position][1] + 1 : 0
+      $game[:movie_battle] = $game[:game_manager].check_battle
+      if ($game[:movie_battle] != nil)
+        $view = 'battle'
+      end
     end
     redirect_to "/#{$view}"
   end
@@ -104,6 +133,14 @@ class GameControllerController < ApplicationController
   def left
     if $view == 'worldmap'
       $player[:position][0] = $player[:position][0] > 0 ? $player[:position][0] - 1 : 9
+      $game[:movie_battle] = $game[:game_manager].check_battle
+      if ($game[:movie_battle] != nil)
+        $view = 'battle'
+      end
+    elsif $view == 'moviedex'
+      if $player[:selected_movie] > 0
+        $player[:selected_movie] -= 1
+      end
     end
     redirect_to "/#{$view}"
   end

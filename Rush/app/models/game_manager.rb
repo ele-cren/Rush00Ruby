@@ -14,7 +14,6 @@ class GameManager
       'Venom',
       'Robin Hood',
       "Ocean's Eight",
-      'Wonder Park',
       'Triple Frontier',
       'Tucker and Dale vs Evil',
       'Book of Shadows: Blair Witch 2',
@@ -22,7 +21,11 @@ class GameManager
       'Dragonball Evolution',
       'Epic Movie',
       'Son of the Mask',
-      'Disaster Movie'
+      'Disaster Movie',
+      'House of the Dead',
+      'Race 3',
+      'Gunday',
+      'Alone in the Dark'
     ]
     @movies = []
   end

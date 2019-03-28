@@ -55,3 +55,76 @@ body{
 .worldmap{
   width: 100%;
 }
+
+.battle-wraper{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 100%;
+  background-color: #d8e4d9
+}
+
+.side-wraper{
+  display: flex;
+  flex-direction: row;
+  height: 40%;
+  justify-content: space-around;
+}
+
+.stats{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.controls-side{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 5px 0 5px;
+}
+
+.movie-poster{
+  width: 35%;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.post-battle{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #d8e4d9;
+  height: 100%;
+  text-align: center;
+}
+
+.moviedex{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #d8e4d9;
+}
+
+.moviedex-side{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 50%;
+}
+
+.right-side{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 65%;
+  text-align: center;
+  overflow-y: scroll;
+}
+
+.synopsis{
+  overflow-y: scroll;
+}
