@@ -1,12 +1,12 @@
-<div class="battle-wraper">
-  <div class="side-wraper">
+<div class="screen-wraper">
+  <div class="side-wraper text-center">
     <%= image_tag("#{@current_movie[:poster]}", class: "movie-poster") %>
     <div class="stats">
       <h5 style="margin: 0"><%= @current_movie[:title] %></h5>
       <p>Strength <%= @current_movie[:imdbRating] %></p>
     </div>
   </div>
-  <div class="side-wraper">
+  <div class="side-wraper text-center">
     <%= image_tag("player.png", class: "movie-poster") %>
     <div class="stats">
       <h5 style="margin: 0">Player</h5>

@@ -1,12 +1,12 @@
 class GameControllerController < ApplicationController
   # global var
-  $view = '/' # Current view
+  $view = '' # Current view
   $game = {
     game_manager: GameManager.new,
     movie_battle: nil,
-    message_battle: ''
+    message_battle: '',
   }
-  $selected = 0 # Selected movie in moviedex
+  $selected = 1 # Selected slot
   $player = {
     position: [0, 0], # Player position
     strength: 3, # Player strength, start at 3, inscrease by one for each captured moviemon
@@ -47,7 +47,7 @@ class GameControllerController < ApplicationController
   end
 
   def start
-    if $view == '/'
+    if $view == ''
       $game[:game_manager].get_movies
       $view = 'worldmap'
     elsif $view == 'worldmap'
@@ -57,14 +57,14 @@ class GameControllerController < ApplicationController
   end
 
   def select
-    if $view == '/'
+    if $view == ''
       $view = 'load'
     elsif $view == 'worldmap'
       $view = 'save'
     elsif $view == 'moviedex' || $view == 'save'
       $view = 'worldmap'
     elsif $view == 'load'
-      $view = '/'
+      $view = ''
     end
     redirect_to "/#{$view}"
   end
@@ -89,6 +89,8 @@ class GameControllerController < ApplicationController
       end
     elsif $view == 'win' || $view == 'lose'
       $view = 'worldmap'
+    elsif $view == 'save'
+      $game[:game_manager].save
     end
     redirect_to "/#{$view}"
   end
@@ -100,6 +102,8 @@ class GameControllerController < ApplicationController
       if ($game[:movie_battle] != nil)
         $view = 'battle'
       end
+    elsif $view == 'save' || $view == 'load'
+      $selected = $selected > 1 ? $selected - 1 : 3
     end
     redirect_to "/#{$view}"
   end
@@ -126,6 +130,8 @@ class GameControllerController < ApplicationController
       if ($game[:movie_battle] != nil)
         $view = 'battle'
       end
+    elsif $view == 'load' || $view == 'save'
+      $selected = $selected < 3 ? $selected + 1 : 1 
     end
     redirect_to "/#{$view}"
   end

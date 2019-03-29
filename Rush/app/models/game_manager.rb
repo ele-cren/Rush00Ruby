@@ -38,6 +38,37 @@ class GameManager
     return nil
   end
 
+  def get_data(slot)
+    file = File.open('public/save.json', 'w')
+    data = JSON.parse(File.read('public/'))
+    file.close
+  end
+
+  def save
+    if File.file?('public/save.json')
+      # File already exists
+      array_data = JSON.parse(File.read('public/save.json'))
+      file = File.open('public/save.json', 'w')
+      data = {
+        player: $player,
+        date: Time.now.strftime("%d/%m/%Y %H:%M")
+      }
+      array_data[$selected - 1] = data
+      file.write(array_data)
+      file.close
+    else
+      array_data = [{}, {}, {}]
+      data = {
+        player: $player,
+        date: Time.now.strftime("%d/%m/%Y %H:%M")
+      }
+      array_data[$selected - 1] = data
+      file = File.open('public/save.json', 'w')
+      file.write(JSON.pretty_generate(array_data))
+      file.close
+    end
+  end
+
   def get_movie(title)
     key = 'da057664'
     url = "http://www.omdbapi.com/?apikey=#{key}&"

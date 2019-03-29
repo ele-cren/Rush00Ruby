@@ -56,10 +56,9 @@ body{
   width: 100%;
 }
 
-.battle-wraper{
+.screen-wraper{
   display: flex;
   flex-direction: column;
-  text-align: center;
   height: 100%;
   background-color: #d8e4d9
 }
@@ -68,7 +67,7 @@ body{
   display: flex;
   flex-direction: row;
   height: 40%;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .stats{
@@ -101,13 +100,6 @@ body{
   text-align: center;
 }
 
-.moviedex{
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background-color: #d8e4d9;
-}
-
 .moviedex-side{
   display: flex;
   flex-direction: row;
@@ -127,4 +119,11 @@ body{
 
 .synopsis{
   overflow-y: scroll;
+}
+
+.slot{
+  width: 90%;
+  height: 23%;
+  border: 1px solid black;
+  margin: auto;
 }
