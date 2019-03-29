@@ -45,7 +45,9 @@ class GameManager
       'Manos: The Hands of Fate',
       'Going Overboard',
       'Pledge This!',
-      'The Hottie & the Nottie'
+      'The Hottie & the Nottie',
+      'Meet the Spartans',
+      'The Human Centipede III (Final Sequence)'
     ]
     @movies = []
   end
