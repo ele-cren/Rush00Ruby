@@ -1,0 +1,129 @@
+// Place all the styles related to the game controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+#wraper{
+  position: relative;
+}
+
+.gameboy{
+  width: 550px;
+}
+
+#screen{
+  position: absolute;
+  width: 198px;
+  height: 182px;
+  top: 166px;
+  left: 182px;
+}
+
+#title-screen{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #b8cda3;
+}
+
+.title{
+  position: relative;
+  width: 450px;
+  left: -131px;
+}
+
+.screen-text{
+  margin-left: 10px;
+}
+
+.player{
+  position: absolute;
+  width: 10%;
+  height: 10%;
+  left: 0%;
+  top: 0%;
+}
+
+.worldmap{
+  width: 100%;
+}
+
+.screen-wraper{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #d8e4d9
+}
+
+.side-wraper{
+  display: flex;
+  flex-direction: row;
+  height: 40%;
+  justify-content: space-between;
+}
+
+.stats{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.controls-side{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 5px 0 5px;
+}
+
+.movie-poster{
+  width: 35%;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.post-battle{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #d8e4d9;
+  height: 100%;
+  text-align: center;
+}
+
+.moviedex-side{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 50%;
+}
+
+.right-side{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 65%;
+  text-align: center;
+  overflow-y: scroll;
+}
+
+.synopsis{
+  overflow-y: scroll;
+}
+
+.slot{
+  width: 90%;
+  height: 23%;
+  border: 1px solid black;
+  margin: auto;
+}

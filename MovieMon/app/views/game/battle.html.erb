@@ -1,0 +1,21 @@
+<div class="screen-wraper">
+  <div class="side-wraper text-center">
+    <%= image_tag("#{@current_movie["poster"]}", class: "movie-poster") %>
+    <div class="stats">
+      <h5 style="margin: 0"><%= @current_movie["title"] %></h5>
+      <p style="font-size: 0.5em; margin: 0">Director <%= @current_movie["director"] %></p>
+      <p style="margin: 0">Strength <%= @current_movie["imdbRating"] %></p>
+    </div>
+  </div>
+  <div class="side-wraper text-center">
+    <%= image_tag("player.png", class: "movie-poster") %>
+    <div class="stats">
+      <h5 style="margin: 0">Player</h5>
+      <p style="margin: 5px 0 0 0">Strength <%= @player_strength %></p>
+    </div>
+  </div>
+  <div class="controls-side">
+    <p><strong style="color: #7B2258">[A]</strong> Fight !
+    <p><strong style="color: #7B2258">[B]</strong> Run !
+  </div>
+</div>
